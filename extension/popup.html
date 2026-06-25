@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FocusGuard AI</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        width: 300px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #0f172a;
+        color: #f1f5f9;
+        padding: 16px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .brand {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: #94a3b8;
+        text-transform: uppercase;
+      }
+      .status-card {
+        background: #1e293b;
+        border-radius: 12px;
+        padding: 16px;
+        text-align: center;
+        border: 1px solid #334155;
+        margin-bottom: 12px;
+      }
+      .dot {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        margin-right: 6px;
+        vertical-align: middle;
+      }
+      .dot.active { background: #22c55e; box-shadow: 0 0 6px #22c55e88; }
+      .dot.inactive { background: #475569; }
+      .status-label { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+      .event-name { font-size: 12px; color: #94a3b8; margin-bottom: 4px; }
+      .countdown { font-size: 26px; font-weight: 800; color: #22c55e; font-variant-numeric: tabular-nums; }
+      .inactive-text { font-size: 13px; color: #475569; }
+      .divider { border: none; border-top: 1px solid #1e293b; margin: 8px 0; }
+      .email-section { }
+      .email-label { font-size: 11px; color: #64748b; margin-bottom: 6px; }
+      .email-row { display: flex; gap: 6px; }
+      input {
+        flex: 1;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-size: 12px;
+        color: #f1f5f9;
+        outline: none;
+      }
+      input:focus { border-color: #6366f1; }
+      input::placeholder { color: #475569; }
+      button {
+        background: #6366f1;
+        border: none;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      button:hover { background: #4f46e5; }
+      .footer { margin-top: 10px; font-size: 10px; color: #334155; text-align: center; }
+      .check-btn {
+        width: 100%;
+        margin-top: 8px;
+        background: #1e293b;
+        border: 1px solid #334155;
+        color: #94a3b8;
+        font-size: 12px;
+        padding: 7px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+      .check-btn:hover { border-color: #6366f1; color: #f1f5f9; }
+      .connected-email {
+        font-size: 11px;
+        color: #22c55e;
+        margin-top: 4px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <span class="brand">🛡 FocusGuard AI</span>
+    </div>
+
+    <div class="status-card" id="statusCard">
+      <div class="inactive-text">Loading…</div>
+    </div>
+
+    <button class="check-btn" id="checkBtn" style="display:none">
+      Force Check Now
+    </button>
+
+    <hr class="divider" style="margin-top:12px" />
+
+    <div class="email-section">
+      <p class="email-label">Connected account</p>
+      <div id="connectedEmail" class="connected-email" style="display:none"></div>
+      <div class="email-row" id="emailRow">
+        <input type="email" id="emailInput" placeholder="your@email.com" />
+        <button id="saveEmailBtn">Connect</button>
+      </div>
+    </div>
+
+    <div class="footer">Polls every 60 seconds</div>
+    <script src="popup.js"></script>
+  </body>
+</html>
